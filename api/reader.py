@@ -1,5 +1,7 @@
 import pandas as pd
 import time
+from datetime import datetime
+import os
 from api.consulta import consultar_por_cnpj
 
 def retry_consulta(numero: str, access_token: str, tentativas: int = 3):
@@ -17,7 +19,9 @@ def retry_consulta(numero: str, access_token: str, tentativas: int = 3):
 
 def executar_consulta(access_token: str):
     input_file = "entrada.xlsx"
-    output_file = "resultados_cnpj.xlsx"
+    data_hoje = datetime.today().strftime("%Y-%m-%d")
+    output_file = os.path.join("database", f"resultados_cnpj_{data_hoje}.xlsx")
+
 
     try:
         df = pd.read_excel(input_file)

@@ -1,8 +1,10 @@
 from api.reader import executar_consulta
 from dotenv import load_dotenv
 import os
+from get_token.get_access_token import obter_token
+
+
 if __name__ == '__main__':
-    load_dotenv()
-    access_token = os.getenv("ACCESS_TOKEN")
+    access_token = obter_token()
 
     executar_consulta(access_token)
